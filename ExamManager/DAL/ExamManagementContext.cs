@@ -3,16 +3,12 @@ using ExamManager.Models;
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using ExamManager.Models;
 
 namespace ExamManager.DAL
 {
     public partial class ExamManagementContext : DbContext
     {
-        public ExamManagementContext()
-        {
-        }
-
+       
         public ExamManagementContext(DbContextOptions<ExamManagementContext> options)
             : base(options)
         {
@@ -24,8 +20,8 @@ namespace ExamManager.DAL
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-69FDS3D\\SQLEXPRESS;Initial Catalog=ExamManagement;Integrated Security=True");
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                //optionsBuilder.UseSqlServer("Data Source=DESKTOP-69FDS3D\\SQLEXPRESS;Initial Catalog=ExamManagement;Integrated Security=True");
             }
         }
 

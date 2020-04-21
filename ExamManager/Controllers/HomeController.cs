@@ -7,20 +7,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ExamManager.Models;
 using Microsoft.EntityFrameworkCore;
+using ExamManager.DAL;
 
 namespace ExamManager.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ExamManagementContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ExamManagementContext db)
         {
             _logger = logger;
+            _db = db;
         }
 
         public IActionResult Index()
         {
+            //using (var db = new ExamManagementContext())
+            //{
+
+            //}
+            var list = _db.Questions.ToList();
             return View();
         }
 

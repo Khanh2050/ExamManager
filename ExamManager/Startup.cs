@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ExamManager.DAL;
 using ExamManager.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,12 +27,9 @@ namespace ExamManager
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            //some mvc 
-            services.AddMvc();
 
-            //hey, options! 
             services.AddDbContextPool<ExamManagementContext>(options =>
-                   options.UseSqlServer(Configuration.GetConnectionString("BlexzWebConnection")));
+                   options.UseSqlServer(Configuration.GetConnectionString("ConnectionStr")));         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
