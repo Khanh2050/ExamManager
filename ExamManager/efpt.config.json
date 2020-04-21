@@ -6,20 +6,12 @@
    "IdReplace": false,
    "IncludeConnectionString": true,
    "ModelNamespace": null,
-   "OutputContextPath": "Models",
+   "OutputContextPath": "DAL",
    "OutputPath": "Models",
    "ProjectRootNamespace": "ExamManager",
    "SelectedHandlebarsLanguage": 0,
    "SelectedToBeGenerated": 0,
    "Tables": [
-      {
-         "HasPrimaryKey": true,
-         "Name": "[dbo].[Answer]"
-      },
-      {
-         "HasPrimaryKey": true,
-         "Name": "[dbo].[QuestionAnswerMap]"
-      },
       {
          "HasPrimaryKey": true,
          "Name": "[dbo].[Questions]"

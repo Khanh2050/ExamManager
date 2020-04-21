@@ -6,15 +6,9 @@ namespace ExamManager.Models
 {
     public partial class Question
     {
-        public Question()
-        {
-            QuestionAnswerMaps = new HashSet<QuestionAnswerMap>();
-        }
-
-        public string Id { get; set; }
+        public string QuestionId { get; set; }
         public string Question1 { get; set; }
-        public string QuestionLevel { get; set; }
-
-        public virtual ICollection<QuestionAnswerMap> QuestionAnswerMaps { get; set; }
+        public int QuestionLevel { get; set; }
+        public string Answer { get; set; }
     }
 }
