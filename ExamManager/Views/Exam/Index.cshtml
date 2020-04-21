@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Exam";
+}
+
+<div id="SettingModal"></div>
+<div id="Content"></div>
+<div id="Spinner" class="centered"></div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+        $.ajax({
+            url: '@Url.Action("ExamSetupModal", "Exam")',
+            success: function (result) {
+                $("#SettingModal").html(result);
+                $('#ExamSetupModal').modal({
+                    show: true,
+                    backdrop: false,
+                    keyboard: false,
+                    focus: true
+                })
+            }
+        });
+    })
+
+     $(document).on('click', '#SubmitBtn', function () {
+         $("#Spinner").prepend('<img src="/asset/Spin-0.8s-270px.gif" />');
+         $('#ExamSetupModal').modal('hide');
+          $.ajax({
+            url: '@Url.Action("Content", "Exam")',
+              success: function (result) {
+                  $("#Content").html(result);
+                  $("#Spinner img:last-child").remove();
+            }
+        });
+     })
+    </script>
+}

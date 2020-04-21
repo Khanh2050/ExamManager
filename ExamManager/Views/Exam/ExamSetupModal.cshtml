@@ -1,0 +1,61 @@
+﻿@model ExamManager.Models.ExamModel
+<div class="modal fade" id="ExamSetupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Số câu hỏi cho mỗi level</h5>
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>*@
+            </div>
+            <div class="modal-body">
+                <form class="form">
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Level 1 </span>
+                            </div>
+                            <input type="text" class="form-control" name="Lvl1" value="5" aria-describedby="basic-addon3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Level 2 </span>
+                            </div>
+                            <input type="text" class="form-control" name="Lvl2" value="5" aria-describedby="basic-addon3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Level 3 </span>
+                            </div>
+                            <input type="text" class="form-control" name="Lvl3" value="5" aria-describedby="basic-addon3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Level 4 </span>
+                            </div>
+                            <input type="text" class="form-control" name="Lvl4" value="5" aria-describedby="basic-addon3">
+                        </div>
+                    </div>                  
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Level 5 </span>
+                            </div>
+                            <input type="text" class="form-control" name="Lvl5" value="5" aria-describedby="basic-addon3">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Bỏ</button>*@
+                <button type="button" id="SubmitBtn" class="btn btn-primary">Vào đề !!!</button>
+            </div>
+        </div>
+    </div>
+</div>
