@@ -24,11 +24,6 @@ namespace ExamManager.Controllers
 
         public IActionResult Index()
         {
-            //using (var db = new ExamManagementContext())
-            //{
-
-            //}
-            var list = _db.Questions.ToList();
             return View();
         }
 

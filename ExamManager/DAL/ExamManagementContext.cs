@@ -8,7 +8,7 @@ namespace ExamManager.DAL
 {
     public partial class ExamManagementContext : DbContext
     {
-       
+        
         public ExamManagementContext(DbContextOptions<ExamManagementContext> options)
             : base(options)
         {
@@ -16,21 +16,10 @@ namespace ExamManager.DAL
 
         public virtual DbSet<Question> Questions { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                //optionsBuilder.UseSqlServer("Data Source=DESKTOP-69FDS3D\\SQLEXPRESS;Initial Catalog=ExamManagement;Integrated Security=True");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Question>(entity =>
             {
-                entity.Property(e => e.QuestionId).HasMaxLength(20);
-
                 entity.Property(e => e.Answer)
                     .IsRequired()
                     .HasMaxLength(300);
