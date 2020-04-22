@@ -79,3 +79,11 @@ body {
     -ms-transform: translate(-50%, -50%); /* for IE 9 */
     -webkit-transform: translate(-50%, -50%); /* for Safari */
 }
+
+.error-class {
+    color: red;
+    z-index: 0;
+    position: relative;
+    display: block;
+    text-align: left;
+}

@@ -1,6 +1,7 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Exam";
+
+    var questionCount = (ExamModel)ViewBag.QuestionsCount;
 }
 
 <div id="SettingModal"></div>
@@ -10,30 +11,116 @@
     <script>
         $(document).ready(function () {
 
-        $.ajax({
-            url: '@Url.Action("ExamSetupModal", "Exam")',
-            success: function (result) {
-                $("#SettingModal").html(result);
-                $('#ExamSetupModal').modal({
-                    show: true,
-                    backdrop: false,
-                    keyboard: false,
-                    focus: true
-                })
-            }
-        });
-    })
+            $.ajax({
+                url: '@Url.Action("ExamSetupModal", "Exam")',
+                success: function (result) {
+                    $("#SettingModal").html(result);
+                    $('#ExamSetupModal').modal({
+                        show: true,
+                        backdrop: false,
+                        keyboard: false,
+                        focus: true
+                    });                   
+                    
+                    $('.modal-backdrop').appendTo('#SettingModal');   
 
-     $(document).on('click', '#SubmitBtn', function () {
-         $("#Spinner").prepend('<img src="/asset/Spin-0.8s-270px.gif" />');
-         $('#ExamSetupModal').modal('hide');
-          $.ajax({
-            url: '@Url.Action("Content", "Exam")',
-              success: function (result) {
-                  $("#Content").html(result);
-                  $("#Spinner img:last-child").remove();
+                    ValidatorInit();
+                }
+            });
+        })
+
+        $(document).on('click', '#SubmitBtn', function () {
+            var form = $('form[name="setupForm"]');
+            var valid = form.valid();
+            if (valid) {
+
+                $("#Spinner").prepend('<img src="/asset/Spin-0.8s-270px.gif" />');
+                $('#ExamSetupModal').modal('hide');
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Content", "Exam")',
+                    data: form.serialize(),
+                    success: function (result) {
+                        $("#Content").html(result);
+                        $("#Spinner img:last-child").remove();
+                    }
+                });
             }
+
         });
-     })
+
+        $(document).on('click', '#cancelBtn', function () {           
+            $('#Content').append('<p> Hèn </p>'); 
+            $("#Content").addClass('centered');
+        })
+
+        $(document).on('keypress', '.numberonly', function (event) {
+            return (((event.which > 47) && (event.which < 58)) || (event.which == 13));
+        });
+
+        function ValidatorInit() {
+            jQuery.validator.addMethod("comparison", function (value, element, params) {
+                return +value <= +params;
+            }, jQuery.validator.format("Số câu hỏi hiện có của level này là {0}"));
+
+            $('form[name="setupForm"]').validate({
+              rules: {
+                Lvl1: {
+                    number: true,
+                    comparison: '@questionCount.Lvl1'
+                },
+                Lvl2: {
+                    number: true,
+                    comparison: '@questionCount.Lvl2'
+                },
+                Lvl3: {
+                    number: true,
+                    comparison: '@questionCount.Lvl3'
+                },
+                Lvl4: {
+                    number: true,
+                    comparison: '@questionCount.Lvl4'
+                },
+                Lvl5: {
+                    number: true,
+                    comparison: '@questionCount.Lvl5'
+                }
+              },
+
+            messages: {
+                Lvl1: {
+                    number: 'Vui lòng chỉ điền số'
+                },
+                Lvl2: {
+                    number: 'Vui lòng chỉ điền số'
+                },
+                Lvl3: {
+                    number: 'Vui lòng chỉ điền số'
+                },
+                Lvl4: {
+                    number: 'Vui lòng chỉ điền số'
+                },
+                Lvl5: {
+                    number: 'Vui lòng chỉ điền số'
+                },
+            },
+                errorClass: "error-class",
+                validClass: "valid-class",
+                errorElement: 'div',
+                errorPlacement: function (error, element) {
+                    if (element.parent('.input-group').length) {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                onError: function () {
+                    $('.input-group.error-class').find('.help-block.form-error').each(function () {
+                        $(this).closest('.form-group').addClass('error-class').append($(this));
+                    });
+                },
+           });
+        }
+
     </script>
 }

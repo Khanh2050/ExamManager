@@ -1,5 +1,13 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-<b>blablabla</b>
+﻿@model IEnumerable<ExamManager.Models.Question>
+@{ 
+    var count = 1;
+}
+@foreach (var item in Model)
+{
+    <p>
+        <span>@(count++)&#46;&nbsp;</span>
+        @item.Question1&nbsp;
+        <span>( Level @item.QuestionLevel )</span>
+    </p> 
+   
+}
