@@ -1,0 +1,55 @@
+﻿@model Question
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Thêm mới Câu hỏi</h4>
+<form asp-action="CreateOrUpdate" method="post" class="needs-validation" novalidate>
+    <div class="form-group">
+        <input type="hidden" asp-for="QuestionId" />
+    </div>
+    <div class="form-group">
+        <label>Câu hỏi</label>
+        <input class="form-control" type="text" asp-for="Question1" required />
+        <div class="invalid-feedback">
+            Xin vui lòng nhập câu hỏi.
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Level</label>
+        <input class="form-control" type="number" min="1" max="5" asp-for="QuestionLevel" required />
+        <div class="invalid-feedback">
+            Xin vui lòng nhập số level từ 1 đến 5.
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Câu trả lời</label>
+        <input class="form-control" type="text" asp-for="Answer" required />
+        <div class="invalid-feedback">
+            Xin vui lòng nhập câu trả lời.
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Xác nhận</button>
+</form>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>

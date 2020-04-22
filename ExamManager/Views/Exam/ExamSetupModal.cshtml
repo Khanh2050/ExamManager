@@ -1,4 +1,5 @@
 ﻿@model ExamManager.Models.ExamModel
+
 <div class="modal fade" id="ExamSetupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
@@ -9,13 +10,13 @@
                 </button>*@
             </div>
             <div class="modal-body">
-                <form class="form">
+                <form class="form" name="setupForm">
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon3">Level 1 </span>
                             </div>
-                            <input type="text" class="form-control" name="Lvl1" value="5" aria-describedby="basic-addon3">
+                            <input type="text" class="form-control numberonly" name="Lvl1" value="5" aria-describedby="basic-addon3">
                         </div>
                     </div>
                     <div class="form-group">
@@ -23,7 +24,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon3">Level 2 </span>
                             </div>
-                            <input type="text" class="form-control" name="Lvl2" value="5" aria-describedby="basic-addon3">
+                            <input type="text" class="form-control numberonly" name="Lvl2" value="5" aria-describedby="basic-addon3">
                         </div>
                     </div>
                     <div class="form-group">
@@ -31,7 +32,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon3">Level 3 </span>
                             </div>
-                            <input type="text" class="form-control" name="Lvl3" value="5" aria-describedby="basic-addon3">
+                            <input type="text" class="form-control numberonly" name="Lvl3" value="5" aria-describedby="basic-addon3">
                         </div>
                     </div>
                     <div class="form-group">
@@ -39,7 +40,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon3">Level 4 </span>
                             </div>
-                            <input type="text" class="form-control" name="Lvl4" value="5" aria-describedby="basic-addon3">
+                            <input type="text" class="form-control numberonly" name="Lvl4" value="5" aria-describedby="basic-addon3">
                         </div>
                     </div>                  
                     <div class="form-group">
@@ -47,13 +48,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon3">Level 5 </span>
                             </div>
-                            <input type="text" class="form-control" name="Lvl5" value="5" aria-describedby="basic-addon3">
+                            <input type="text" class="form-control numberonly" name="Lvl5" value="5" aria-describedby="basic-addon3">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Bỏ</button>*@
+                <button type="button" class="btn btn-secondary" id="cancelBtn" data-dismiss="modal">Bỏ</button>
                 <button type="button" id="SubmitBtn" class="btn btn-primary">Vào đề !!!</button>
             </div>
         </div>

@@ -13,4 +13,10 @@ namespace ExamManager.Models
         public int Lvl4 { get; set; }
         public int Lvl5 { get; set; }
     }
+
+    public class QuestionModel
+    {
+        public int Level { get; set; }
+        public int Count { get; set; }
+    }
 }

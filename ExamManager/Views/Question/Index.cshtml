@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Question>
+
+@{
+    ViewData["Title"] = "Index";
+    var count = 1;
+}
+
+<h3>Danh sách câu hỏi</h3>
+
+<a asp-action="CreateOrUpdate">Thêm mới</a>
+<div class="row table-responsive">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Câu hỏi</th>
+                <th scope="col">Câu trả lời</th>
+                <th scope="col" width="20%">Level</th>
+                <th scope="col" width="10%">Action</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(count++)</td>
+                    <td>@item.Question1</td>
+                    <td>@item.Answer</td>
+                    <td>@item.QuestionLevel</td>
+                    <td>
+                        <a asp-action="CreateOrUpdate" asp-route-id="@item.QuestionId">Sửa</a>
+                        &nbsp;
+                        <a href="#" data-toggle="modal" data-target="#exampleModal" class="deleteBtn" data-id="@item.QuestionId">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<form id="myForm">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận xóa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa bản ghi này không ?
+                    <input hidden id="deleteID" name="id" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button id="modalDeleteButton" type="button" class="btn btn-primary">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        var itemID;
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        $('.deleteBtn').on('click', function () {
+            itemID = $(this).attr('data-id');
+        });
+
+
+        $(document).on('click', '#modalDeleteButton', function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Delete", "Question")',
+                    data: { id: itemID },
+                    success: function (result) {
+                        window.location = result.redirectUrl;
+                    }
+                });
+
+        });
+    </script>
+
+}
